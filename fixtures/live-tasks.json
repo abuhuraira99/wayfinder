@@ -1,0 +1,12 @@
+{
+  "name": "live-web",
+  "description": "Optional smoke test against public pages (needs outbound network). Live pages change, so 'expected': null means the item is reported but not scored.",
+  "tasks": [
+    {"id": "w01", "question": "What is the main heading of this page?", "url": "https://example.com/",
+     "expected": "Example Domain", "citations": ["https://example.com/"]},
+    {"id": "w02", "question": "Which top-level domain names are reserved for testing?", "url": "https://www.iana.org/domains/reserved",
+     "expected": null, "citations": null},
+    {"id": "w03", "question": "What is the latest stable Python release?", "url": "https://www.python.org/downloads/",
+     "expected": null, "citations": null}
+  ]
+}

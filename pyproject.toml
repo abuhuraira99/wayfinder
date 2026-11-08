@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wayfinder-agent"
+version = "0.1.0"
+description = "A grounded web information retrieval agent: crawl a site, find the value, cite the page."
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Abu Huraira" }]
+requires-python = ">=3.10"
+dependencies = []  # the agent, CLI and Studio are standard-library only
+keywords = ["web agent", "retrieval", "crawler", "question answering", "rocm", "qwen"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+]
+
+[project.optional-dependencies]
+gpu = ["transformers>=4.57"]  # plus torch for your accelerator
+dev = ["pytest>=8"]
+
+[project.scripts]
+wayfinder = "wayfinder.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/abuhuraira99/wayfinder"
+
+[tool.setuptools.packages.find]
+include = ["wayfinder*"]
+
+[tool.setuptools.package-data]
+"wayfinder.studio" = ["static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

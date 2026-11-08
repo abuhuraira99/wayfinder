@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Getting started with the Edge agent | Halcyon Instruments</title>
+  <meta name="description" content="Getting started with the Edge agent">
+  <link rel="stylesheet" href="../assets/site.css">
+  <script>window.dataLayer = window.dataLayer || []; function track(){}</script>
+  <style>.promo{color:#0a7}</style>
+</head>
+<body>
+  <div class="cookie-banner">We use cookies to improve your experience. <a href="../about.html">Learn more</a></div>
+  <header class="site-header">
+    <a class="logo" href="../index.html">Halcyon Instruments</a>
+    <nav aria-label="Main">
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../products/index.html">Products</a></li>
+      <li><a href="../pricing.html">Pricing</a></li>
+      <li><a href="index.html">Docs</a></li>
+      <li><a href="../changelog.html">Changelog</a></li>
+      <li><a href="../blog/index.html">Blog</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    </nav>
+  </header>
+  <main>
+
+    <h1>Getting started with the Halcyon Edge agent</h1>
+    <p>The Edge agent runs next to your Cirrus Hub and buffers readings when the uplink drops.</p>
+    <h2>Requirements</h2>
+    <ul><li>Linux kernel 5.10 or later</li><li>512 MB of free memory</li></ul>
+    <h2>Install</h2>
+    <pre><code>curl -fsSL https://get.halcyon-instruments.example/edge | sh</code></pre>
+    <h2>Configuration</h2>
+    <table>
+      <tr><th>Setting</th><th>Default</th><th>Description</th></tr>
+      <tr><td>listen_port</td><td>8443</td><td>TCP port the agent listens on</td></tr>
+      <tr><td>buffer_hours</td><td>72</td><td>Hours of readings kept while offline</td></tr>
+      <tr><td>log_level</td><td>info</td><td>One of debug, info, warn, error</td></tr>
+    </table>
+
+  </main>
+  <footer>
+    <p>&copy; 2026 Halcyon Instruments AS. Questions? Write to support@halcyon-instruments.example or call +47 77 60 12 34.</p>
+    <p><a href="../support/sla.html">Service levels</a> &middot; <a href="../careers.html">Careers</a> &middot; <a href="faq.md">FAQ</a></p>
+  </footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

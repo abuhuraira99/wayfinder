@@ -1,0 +1,34 @@
+# Wayfinder - extra packages for the evaluation image.
+#
+# Installed with:  pip install --no-deps --only-binary=:all: --target /opt/site -r requirements-image.txt
+# The mandated base image already ships torch (ROCm), torchvision, numpy and pillow; they are
+# deliberately NOT listed so the ROCm torch is never replaced. This is the full dependency
+# closure of transformers for CPython 3.14 / manylinux x86_64 with those four removed.
+# Every pin has a cp314 manylinux x86_64, abi3 or pure-Python wheel on PyPI (checked 2026-11-08).
+# The core agent, app.py and the Studio are standard-library only; these serve the model server.
+annotated-doc==0.0.5
+anyio==4.16.0
+click==8.5.1
+filelock==4.2.9
+fsspec==2026.9.0
+h11==0.16.0
+hf-xet==1.8.0
+httpcore2==2.16.0
+httpx2==2.16.0
+huggingface-hub==2.4.0
+idna==3.20
+markdown-it-py==4.2.0
+mdurl==0.1.2
+packaging==26.3
+pygments==2.21.0
+pyyaml==6.0.3
+regex==2026.11.7
+rich==15.0.0
+safetensors==0.8.0
+shellingham==1.5.4
+tokenizers==0.23.3
+tqdm==4.70.1
+transformers==5.22.2
+truststore==0.10.5
+typer==0.28.0
+typing-extensions==4.16.0

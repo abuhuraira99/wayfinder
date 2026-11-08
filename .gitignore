@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+
+# Runtime output
+output/
+index/
+*.sock
+*.status.json
+
+# Model weights are shipped in the image, never in the repo
+models/
+
+# Secrets
+.env
+.env.*
+*.env
+.secrets/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

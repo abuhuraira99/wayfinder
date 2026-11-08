@@ -1,0 +1,498 @@
+{
+  "name": "tokenlab-qwen3.8-27b-http",
+  "created": "2026-11-08T10:42:13+00:00",
+  "tasks_file": "tasks.json",
+  "backend": "openai",
+  "backend_is_stub": false,
+  "transport": "http",
+  "via": "inproc",
+  "budget_s": 25.0,
+  "device": {
+    "python": "3.14.7",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "backend": "openai",
+    "endpoint_host": "remote OpenAI-compatible endpoint",
+    "model": "Qwen3.8-27B",
+    "calls": 22
+  },
+  "summary": {
+    "n": 19,
+    "scored": 19,
+    "pass": 19,
+    "answer_pass": 19,
+    "citation_pass": 19,
+    "accuracy": 1.0,
+    "mean_latency_s": 5.735,
+    "p50_latency_s": 3.931,
+    "p95_latency_s": 14.952,
+    "max_latency_s": 19.919
+  },
+  "items": [
+    {
+      "id": "t01",
+      "question": "How much does the Team plan cost per month?",
+      "kind": "table cell",
+      "expected": "$49",
+      "got": "$49",
+      "expected_citations": [
+        "pricing.html"
+      ],
+      "citations": [
+        "pricing.html"
+      ],
+      "source_url": "http://127.0.0.1:64724/pricing.html",
+      "confidence": 0.85,
+      "latency_s": 2.468,
+      "method": "model",
+      "pages_fetched": 12,
+      "model_steps": 1,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    },
+    {
+      "id": "t02",
+      "question": "What is the battery life of the Aurora X2?",
+      "kind": "spec table",
+      "expected": "18 months",
+      "got": "18 months",
+      "expected_citations": [
+        "products/aurora-x2.html"
+      ],
+      "citations": [
+        "products/aurora-x2.html"
+      ],
+      "source_url": "http://127.0.0.1:64724/products/aurora-x2.html",
+      "confidence": 0.85,
+      "latency_s": 19.919,
+      "method": "model",
+      "pages_fetched": 12,
+      "model_steps": 1,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    },
+    {
+      "id": "t03",
+      "question": "What is the email address for customer support?",
+      "kind": "email (footer copy must be ignored)",
+      "expected": "support@halcyon-instruments.example",
+      "got": "support@halcyon-instruments.example",
+      "expected_citations": [
+        "contact.html"
+      ],
+      "citations": [
+        "contact.html"
+      ],
+      "source_url": "http://127.0.0.1:64724/contact.html",
+      "confidence": 0.85,
+      "latency_s": 3.931,
+      "method": "model",
+      "pages_fetched": 12,
+      "model_steps": 1,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    },
+    {
+      "id": "t04",
+      "question": "What is the latest firmware version for the Aurora X2?",
+      "kind": "follow a link, latest of several",
+      "expected": "4.2.1",
+      "got": "4.2.1",
+      "expected_citations": [
+        "changelog.html"
+      ],
+      "citations": [
+        "changelog.html"
+      ],
+      "source_url": "http://127.0.0.1:64724/changelog.html",
+      "confidence": 0.85,
+      "latency_s": 3.074,
+      "method": "model",
+      "pages_fetched": 12,
+      "model_steps": 1,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    },
+    {
+      "id": "t05",
+      "question": "How many sensors can a single Cirrus Hub manage?",
+      "kind": "count in prose",
+      "expected": "64",
+      "got": "64",
+      "expected_citations": [
+        "products/cirrus-hub.html"
+      ],
+      "citations": [
+        "products/cirrus-hub.html"
+      ],
+      "source_url": "http://127.0.0.1:64724/products/cirrus-hub.html",
+      "confidence": 0.85,
+      "latency_s": 2.731,
+      "method": "model",
+      "pages_fetched": 12,
+      "model_steps": 1,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    },
+    {
+      "id": "t06",
+      "question": "What uptime does the SLA guarantee for the Enterprise plan?",
+      "kind": "table cell after a hop",
+      "expected": "99.99%",
+      "got": "99.99%",
+      "expected_citations": [
+        "support/sla.html"
+      ],
+      "citations": [
+        "support/sla.html"
+      ],
+      "source_url": "http://127.0.0.1:64724/support/sla.html",
+      "confidence": 0.85,
+      "latency_s": 8.774,
+      "method": "model",
+      "pages_fetched": 11,
+      "model_steps": 1,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    },
+    {
+      "id": "t07",
+      "question": "In which year was Halcyon Instruments founded?",
+      "kind": "year",
+      "expected": "2017",
+      "got": "2017",
+      "expected_citations": [
+        "about.html"
+      ],
+      "citations": [
+        "about.html"
+      ],
+      "source_url": "http://127.0.0.1:64724/about.html",
+      "confidence": 0.85,
+      "latency_s": 3.889,
+      "method": "model",
+      "pages_fetched": 12,
+      "model_steps": 1,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    },
+    {
+      "id": "t08",
+      "question": "What is the data retention period on the cheapest plan that includes SSO?",
+      "kind": "reasoning over a table",
+      "expected": "1 year",
+      "got": "1 year",
+      "expected_citations": [
+        "pricing.html"
+      ],
+      "citations": [
+        "pricing.html"
+      ],
+      "source_url": "http://127.0.0.1:64724/pricing.html",
+      "confidence": 0.85,
+      "latency_s": 3.044,
+      "method": "model",
+      "pages_fetched": 12,
+      "model_steps": 1,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    },
+    {
+      "id": "t09",
+      "question": "What is the weight of the product that won the 2025 Northlight Design Award?",
+      "kind": "multi-hop, two citations",
+      "expected": "95 g",
+      "got": "95 g",
+      "expected_citations": [
+        "blog/northlight-award-2025.html",
+        "products/beacon-mini.html"
+      ],
+      "citations": [
+        "products/beacon-mini.html",
+        "blog/northlight-award-2025.html"
+      ],
+      "source_url": "http://127.0.0.1:64724/products/beacon-mini.html",
+      "confidence": 0.75,
+      "latency_s": 4.194,
+      "method": "model",
+      "pages_fetched": 12,
+      "model_steps": 1,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    },
+    {
+      "id": "t10",
+      "question": "What port does the Halcyon Edge agent listen on by default?",
+      "kind": "config table",
+      "expected": "8443",
+      "got": "8443",
+      "expected_citations": [
+        "docs/getting-started.html"
+      ],
+      "citations": [
+        "docs/getting-started.html"
+      ],
+      "source_url": "http://127.0.0.1:64724/docs/getting-started.html",
+      "confidence": 0.85,
+      "latency_s": 4.205,
+      "method": "model",
+      "pages_fetched": 12,
+      "model_steps": 1,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    },
+    {
+      "id": "t11",
+      "question": "Which city is Halcyon Instruments headquartered in?",
+      "kind": "definition list",
+      "expected": "Tromsø",
+      "got": "Tromsø",
+      "expected_citations": [
+        "about.html"
+      ],
+      "citations": [
+        "about.html"
+      ],
+      "source_url": "http://127.0.0.1:64724/about.html",
+      "confidence": 0.85,
+      "latency_s": 3.342,
+      "method": "model",
+      "pages_fetched": 12,
+      "model_steps": 1,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    },
+    {
+      "id": "t12",
+      "question": "When was Halcyon Cloud 3.8.0 released?",
+      "kind": "date in heading",
+      "expected": "14 September 2026",
+      "got": "14 September 2026",
+      "expected_citations": [
+        "changelog.html"
+      ],
+      "citations": [
+        "changelog.html"
+      ],
+      "source_url": "http://127.0.0.1:64724/changelog.html",
+      "confidence": 0.85,
+      "latency_s": 3.893,
+      "method": "model",
+      "pages_fetched": 12,
+      "model_steps": 1,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    },
+    {
+      "id": "t13",
+      "question": "How quickly does Halcyon respond to critical tickets on the Business plan?",
+      "kind": "table cell",
+      "expected": "4 business hours",
+      "got": "4 business hours",
+      "expected_citations": [
+        "support/sla.html"
+      ],
+      "citations": [
+        "support/sla.html"
+      ],
+      "source_url": "http://127.0.0.1:64724/support/sla.html",
+      "confidence": 0.85,
+      "latency_s": 2.882,
+      "method": "model",
+      "pages_fetched": 12,
+      "model_steps": 1,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    },
+    {
+      "id": "t14",
+      "question": "Which HTTP header carries the API key?",
+      "kind": "label: value",
+      "expected": "X-Halcyon-Key",
+      "got": "X-Halcyon-Key",
+      "expected_citations": [
+        "docs/api.html"
+      ],
+      "citations": [
+        "docs/api.html"
+      ],
+      "source_url": "http://127.0.0.1:64724/docs/api.html",
+      "confidence": 0.85,
+      "latency_s": 5.689,
+      "method": "model",
+      "pages_fetched": 12,
+      "model_steps": 1,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    },
+    {
+      "id": "t15",
+      "question": "What is the minimum number of nodes for an on-premise deployment?",
+      "kind": "markdown page",
+      "expected": "3",
+      "got": "3",
+      "expected_citations": [
+        "docs/faq.md"
+      ],
+      "citations": [
+        "docs/faq.md"
+      ],
+      "source_url": "http://127.0.0.1:64724/docs/faq.md",
+      "confidence": 0.85,
+      "latency_s": 3.214,
+      "method": "model",
+      "pages_fetched": 12,
+      "model_steps": 1,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    },
+    {
+      "id": "t16",
+      "question": "What is the phone number of the Oslo sales office?",
+      "kind": "table row by label",
+      "expected": "+47 22 41 09 88",
+      "got": "+47 22 41 09 88",
+      "expected_citations": [
+        "contact.html"
+      ],
+      "citations": [
+        "contact.html"
+      ],
+      "source_url": "http://127.0.0.1:64724/contact.html",
+      "confidence": 0.85,
+      "latency_s": 14.952,
+      "method": "model",
+      "pages_fetched": 12,
+      "model_steps": 1,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    },
+    {
+      "id": "u01",
+      "question": "What is the unit price of the Aurora X9?",
+      "kind": "unanswerable (no such product)",
+      "expected": "",
+      "got": "",
+      "expected_citations": [],
+      "citations": [],
+      "source_url": "",
+      "confidence": 0.0,
+      "latency_s": 5.633,
+      "method": "model:none",
+      "pages_fetched": 12,
+      "model_steps": 2,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    },
+    {
+      "id": "u02",
+      "question": "What is the phone number of the Tokyo office?",
+      "kind": "unanswerable (no such office)",
+      "expected": "",
+      "got": "",
+      "expected_citations": [],
+      "citations": [],
+      "source_url": "",
+      "confidence": 0.0,
+      "latency_s": 6.434,
+      "method": "model:none",
+      "pages_fetched": 12,
+      "model_steps": 2,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    },
+    {
+      "id": "u03",
+      "question": "Who is the Chief Financial Officer of Halcyon Instruments?",
+      "kind": "unanswerable (near miss: CEO and CTO are listed)",
+      "expected": "",
+      "got": "",
+      "expected_citations": [],
+      "citations": [],
+      "source_url": "",
+      "confidence": 0.0,
+      "latency_s": 6.69,
+      "method": "model:none",
+      "pages_fetched": 12,
+      "model_steps": 2,
+      "follows": 0,
+      "scored": true,
+      "answer_pass": true,
+      "answer_pass_loose": true,
+      "citation_pass": true,
+      "pass": true
+    }
+  ],
+  "note": "AMD Token Lab hosted Qwen3.8-27B via the openai backend; fixture site served over local HTTP so the crawler runs for real. Latency includes network and a client-side 18 req/min throttle. Not the shipped Qwen3-VL-8B; GPU run pending."
+}

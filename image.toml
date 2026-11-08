@@ -1,0 +1,77 @@
+# Image manifest for the crane-based build pipeline. It mirrors the reference
+# Dockerfile in this folder:
+#   /app/app.py, /app/server.py, /app/requirements.txt, empty /app/output,
+#   /app/corpus and /app/index; the wayfinder package on the import path;
+#   extra wheels from requirements-image.txt installed --no-deps;
+#   CMD python3 /app/server.py, WORKDIR /app.
+# The pipeline sets PYTHONPATH=/opt/site, so the package goes to
+# /opt/site/wayfinder instead of /app/wayfinder. app/app.py and app/server.py look
+# next to themselves first and then fall back to sys.path; the supervisor runs
+# `python -m wayfinder.server` with the package's parent prepended to PYTHONPATH.
+schema = 1
+name = "wayfinder"
+
+[image]
+app_dir = "app"                          # -> /app (app.py, server.py)
+package_dirs = ["wayfinder"]             # -> /opt/site/wayfinder
+requirements = "requirements-image.txt"
+copy_requirements = true                 # -> /app/requirements.txt, as in the Dockerfile
+extra_dirs = ["output", "corpus", "index"]
+cmd = ["python3", "/app/server.py"]
+
+[image.env]
+PYTHONDONTWRITEBYTECODE = "1"
+WAYFINDER_BACKEND = "transformers"
+WAYFINDER_INDEX_DIR = "/app/index"
+
+# Identical in all three projects (shared weights layers).
+[model]
+repo_id = "Qwen/Qwen3-VL-8B-Instruct"
+revision = "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b"
+name = "Qwen3-VL-8B-Instruct"
+allow_patterns = ["*.json", "*.safetensors", "*.txt", "*.jinja", "*.model", "*.tiktoken"]
+
+# CPU contract test. WAYFINDER_BACKEND=stub selects wayfinder.backends.stub
+# (standard library only, no torch). The default socket is /tmp/wayfinder.sock.
+[smoke]
+server = ["python3", "/app/server.py"]
+ready_socket = "/tmp/wayfinder.sock"
+ready_timeout = 60
+
+[smoke.env]
+WAYFINDER_BACKEND = "stub"
+
+# {corpus} is /app/corpus, pre-filled with three small text files,
+# an empty dir, an unknown binary and a broken PDF.
+[[smoke.setup]]
+name = "index"
+args = ["python3", "/app/app.py", "--index", "{corpus}"]
+timeout = 600
+
+[[smoke.case]]
+name = "query_01"
+args = ["python3", "/app/app.py", "--query-id", "query_01", "--query", "Which release ships in Q3 FY27?",
+        "--corpus", "{corpus}"]
+output = "/app/output/query_01_output.json"
+keys = { answer = "str", citations = "list", source_url = "str", confidence = "number" }
+
+[[smoke.case]]
+name = "no_source"
+args = ["python3", "/app/app.py", "--query-id", "query_02", "--query", "Which release ships in Q3 FY27?"]
+output = "/app/output/query_02_output.json"
+keys = { answer = "str", citations = "list", source_url = "str", confidence = "number" }
+
+# GPU self-test. {samples} is a saved copy of a site (e.g. fixtures/site of this
+# repo); bench runs from the repo root against fixtures/tasks.json.
+[gpu]
+ready_socket = "/tmp/wayfinder.sock"
+ready_timeout = 600
+bench = ["python3", "-m", "wayfinder", "bench", "--tasks", "fixtures/tasks.json", "--backend", "transformers",
+         "--transport", "offline", "--out", "{reports}", "--name", "m4-gpu"]
+
+[[gpu.case]]
+name = "query_01"
+args = ["python3", "/app/app.py", "--query-id", "query_01", "--query", "How much does the Team plan cost per month?",
+        "--corpus", "{samples}"]
+output = "/app/output/query_01_output.json"
+keys = { answer = "str", citations = "list", source_url = "str", confidence = "number" }

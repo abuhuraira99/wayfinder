@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wayfinder Studio</title>
+  <meta name="color-scheme" content="dark light">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%237c5cff'/%3E%3Cpath d='M16 6l4 10-4 10-4-10z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/static/studio.css">
+</head>
+<body>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+        <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b6cff"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs>
+        <circle cx="16" cy="16" r="14.5" fill="none" stroke="url(#lg)" stroke-width="2"/>
+        <path d="M16 5.5l4.2 10.5L16 26.5 11.8 16z" fill="url(#lg)"/>
+        <circle cx="16" cy="16" r="2" fill="var(--bg)"/>
+      </svg>
+      <div>
+        <div class="brand-name">Wayfinder <span class="brand-sub">Studio</span></div>
+        <div class="brand-tag">Grounded answers from the web, with the page they came from</div>
+      </div>
+    </div>
+    <nav class="seg" role="tablist" aria-label="Mode">
+      <button role="tab" class="seg-btn active" data-mode="live" aria-selected="true">Live</button>
+      <button role="tab" class="seg-btn" data-mode="report" aria-selected="false">Run report</button>
+      <span class="seg-ink" aria-hidden="true"></span>
+    </nav>
+    <div class="top-right">
+      <span id="backend-pill" class="pill" title="Configured backend">…</span>
+      <button id="theme" class="icon-btn" aria-label="Toggle light / dark theme" title="Toggle theme">
+        <svg viewBox="0 0 24 24" class="i-moon"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg viewBox="0 0 24 24" class="i-sun"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div id="stub-banner" class="banner warn" hidden>
+    <strong>TEST STUB backend.</strong> Answers below come from a deterministic stand-in used for tests, not from a model.
+  </div>
+
+  <!-- ============================================================ LIVE -->
+  <main id="view-live" class="view">
+    <section class="composer card glass">
+      <form id="ask" autocomplete="off">
+        <label class="field url-field">
+          <span class="field-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg>
+          </span>
+          <input id="url" name="url" type="text" placeholder="https://example.com — or a saved-site folder" spellcheck="false" aria-label="Start URL">
+          <button type="button" id="use-demo" class="ghost small" title="Use the bundled offline demo site">Demo site</button>
+        </label>
+        <label class="field q-field">
+          <textarea id="question" name="question" rows="2" placeholder="Ask for a specific fact: a price, a version, a date, a contact…" aria-label="Question"></textarea>
+        </label>
+        <details class="advanced">
+          <summary>Saved copy of a site (optional)</summary>
+          <input id="corpus" name="corpus" type="text" placeholder="/path/to/saved/site — used instead of the network" spellcheck="false" aria-label="Corpus folder">
+        </details>
+        <div class="composer-foot">
+          <div id="examples" class="chips" aria-label="Examples"></div>
+          <button id="run" class="primary" type="submit">
+            <span class="run-label">Find answer</span>
+            <span class="spinner" aria-hidden="true"></span>
+            <kbd>Ctrl ↵</kbd>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section class="workspace">
+      <div class="col journey card">
+        <div class="card-head">
+          <h2>Journey</h2>
+          <div class="head-stats"><span id="st-pages">0 pages</span><span id="st-steps">0 model steps</span><span id="st-time">0.0 s</span></div>
+        </div>
+        <ol id="timeline" class="timeline" aria-live="polite">
+          <li class="empty-state">
+            <div class="empty-art" aria-hidden="true">
+              <svg viewBox="0 0 120 80"><path d="M10 60 C30 20, 50 70, 70 35 S105 30, 110 15" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="4 6"/><circle cx="10" cy="60" r="5"/><circle cx="110" cy="15" r="5"/></svg>
+            </div>
+            <p>Every page the agent opens, every link it chooses and every passage it reads shows up here, live.</p>
+          </li>
+        </ol>
+      </div>
+
+      <aside class="col side">
+        <div id="answer-card" class="card answer idle">
+          <div class="card-head"><h2>Answer</h2><span id="method" class="tag"></span></div>
+          <div class="answer-body">
+            <div class="ring" aria-hidden="true">
+              <svg viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"/><circle id="ring-fg" class="ring-fg" cx="22" cy="22" r="19"/></svg>
+              <span id="conf">–</span>
+            </div>
+            <div class="answer-main">
+              <div id="answer" class="answer-value">Waiting for a question</div>
+              <a id="source" class="source" href="#" target="_blank" rel="noopener noreferrer" hidden></a>
+            </div>
+          </div>
+          <div class="sub-h">Citations</div>
+          <ul id="citations" class="cites"><li class="muted">—</li></ul>
+          <div class="sub-h">Evidence</div>
+          <blockquote id="evidence" class="evidence muted">The passage that grounds the answer is shown here with the value highlighted.</blockquote>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h2>Pages visited</h2></div>
+          <ol id="pages" class="pages"><li class="muted">—</li></ol>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h2>Top passages</h2></div>
+          <ol id="passages" class="passages"><li class="muted">—</li></ol>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- ============================================================ REPORT -->
+  <main id="view-report" class="view" hidden>
+    <section class="card glass report-pick">
+      <div class="drop" id="drop" tabindex="0" role="button" aria-label="Open a bench report JSON">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+        <div><strong>Drop a bench report</strong> or click to choose a <code>reports/*.json</code> file</div>
+        <input id="file" type="file" accept="application/json,.json" hidden>
+      </div>
+      <div class="saved">
+        <div class="sub-h">Reports on this machine</div>
+        <ul id="report-list" class="report-list"><li class="muted">No reports found in ./reports</li></ul>
+      </div>
+    </section>
+
+    <section id="report" class="report" hidden>
+      <div id="report-banner" class="banner"></div>
+      <div class="report-title"><h2 id="r-name"></h2><span id="r-meta" class="muted"></span></div>
+      <div class="kpis" id="kpis"></div>
+      <div class="card">
+        <div class="card-head">
+          <h2>Items</h2>
+          <div class="filters" role="group" aria-label="Filter">
+            <button class="chip active" data-f="all">All</button>
+            <button class="chip" data-f="pass">Pass</button>
+            <button class="chip" data-f="fail">Fail</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="items">
+            <thead><tr><th></th><th>ID</th><th>Question</th><th>Expected</th><th>Got</th><th>Citations</th><th class="num">Latency</th></tr></thead>
+            <tbody id="items"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card device"><div class="card-head"><h2>Device</h2></div><dl id="device" class="kv"></dl></div>
+    </section>
+  </main>
+
+  <footer class="foot">Wayfinder · MIT · runs fully offline · <a href="/demo-site/index.html" target="_blank" rel="noopener">open the demo site</a></footer>
+  <script src="/static/studio.js"></script>
+</body>
+</html>

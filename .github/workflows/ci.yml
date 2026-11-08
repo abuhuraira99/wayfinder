@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: CPU tests (stub and rules backends, no GPU, no network)
+        run: uv run --python 3.14 --with pytest python -m pytest -q
+      - name: Fixture bench on the rules path
+        run: uv run --python 3.14 python -m wayfinder bench --backend rules --transport http --name ci-rules-http --out ci-reports
+      - name: Contract smoke test through app.py
+        shell: bash
+        run: |
+          uv run --python 3.14 python app/app.py --query-id q01 --query "How much does the Team plan cost per month?" \
+            --corpus fixtures/site --output-dir ci-out
+          cat ci-out/q01_output.json
+          uv run --python 3.14 python -c "import json; d=json.load(open('ci-out/q01_output.json')); assert d['answer']=='\$49' and d['citations']==['pricing.html'], d"
