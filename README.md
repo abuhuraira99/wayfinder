@@ -216,6 +216,13 @@ uv run --python 3.14 --with pytest python -m pytest -q
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).
 
+## Related projects
+
+Wayfinder is one of three entries I built for the AMD AI League on lablab. The other two use the same runtime design (resident Qwen3-VL-8B server on ROCm, thin `app.py` client):
+
+- [Lumen OCR](https://github.com/abuhuraira99/lumen-ocr): reads licence plates and road signs (Match 2).
+- [Provenance RAG](https://github.com/abuhuraira99/provenance-rag): answers questions over a messy document folder and cites the exact files (Match 3).
+
 ## License
 
 MIT, see [LICENSE](LICENSE). Model weights: Qwen3-VL-8B-Instruct, Apache-2.0.
